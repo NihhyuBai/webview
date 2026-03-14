@@ -225,7 +225,7 @@ private:
           *created_handler) const {
     auto found_client = find_available_client(browser_dir);
     if (!found_client.found) {
-      return -1;
+      return static_cast<HRESULT>(-1);
     }
     auto client_dll = native_library(found_client.dll_path);
     if (auto fn = client_dll.get(
@@ -234,7 +234,7 @@ private:
                 created_handler);
     }
     if (auto fn = client_dll.get(webview2_symbols::DllCanUnloadNow)) {
-      if (!fn()) {
+      if (fn() == 0) {
         client_dll.detach();
       }
     }
@@ -245,21 +245,21 @@ private:
   get_available_browser_version_string_impl(PCWSTR browser_dir,
                                             LPWSTR *version) const {
     if (!version) {
-      return -1;
+      return static_cast<HRESULT>(-1);
     }
     auto found_client = find_available_client(browser_dir);
     if (!found_client.found) {
-      return -1;
+      return static_cast<HRESULT>(-1);
     }
     auto info_length_bytes =
         found_client.version.size() * sizeof(found_client.version[0]);
     auto info = static_cast<LPWSTR>(CoTaskMemAlloc(info_length_bytes));
     if (!info) {
-      return -1;
+      return static_cast<HRESULT>(-1);
     }
     CopyMemory(info, found_client.version.c_str(), info_length_bytes);
     *version = info;
-    return 0;
+    return static_cast<HRESULT>(0);
   }
 
   client_info_t find_available_client(PCWSTR browser_dir) const {
@@ -360,24 +360,24 @@ private:
 };
 
 namespace cast_info {
-static constexpr auto controller_completed =
+inline static constexpr auto controller_completed =
     cast_info_t<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>{
         IID_ICoreWebView2CreateCoreWebView2ControllerCompletedHandler};
 
-static constexpr auto environment_completed =
+inline static constexpr auto environment_completed =
     cast_info_t<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>{
         IID_ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler};
 
-static constexpr auto message_received =
+inline static constexpr auto message_received =
     cast_info_t<ICoreWebView2WebMessageReceivedEventHandler>{
         IID_ICoreWebView2WebMessageReceivedEventHandler};
 
-static constexpr auto permission_requested =
+inline static constexpr auto permission_requested =
     cast_info_t<ICoreWebView2PermissionRequestedEventHandler>{
         IID_ICoreWebView2PermissionRequestedEventHandler};
 
-static constexpr auto add_script_to_execute_on_document_created_completed =
-    cast_info_t<
+inline static constexpr auto
+    add_script_to_execute_on_document_created_completed = cast_info_t<
         ICoreWebView2AddScriptToExecuteOnDocumentCreatedCompletedHandler>{
         IID_ICoreWebView2AddScriptToExecuteOnDocumentCreatedCompletedHandler};
 } // namespace cast_info

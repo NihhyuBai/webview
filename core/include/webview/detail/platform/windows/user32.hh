@@ -63,21 +63,21 @@ enum class dpi_awareness : intptr_t {
   per_monitor_aware = -3
 };
 
-constexpr auto SetProcessDpiAwarenessContext =
+inline constexpr auto SetProcessDpiAwarenessContext =
     library_symbol<SetProcessDpiAwarenessContext_t>(
         "SetProcessDpiAwarenessContext");
-constexpr auto SetProcessDPIAware =
+inline constexpr auto SetProcessDPIAware =
     library_symbol<SetProcessDPIAware_t>("SetProcessDPIAware");
-constexpr auto GetDpiForWindow =
+inline constexpr auto GetDpiForWindow =
     library_symbol<GetDpiForWindow_t>("GetDpiForWindow");
-constexpr auto EnableNonClientDpiScaling =
+inline constexpr auto EnableNonClientDpiScaling =
     library_symbol<EnableNonClientDpiScaling_t>("EnableNonClientDpiScaling");
-constexpr auto AdjustWindowRectExForDpi =
+inline constexpr auto AdjustWindowRectExForDpi =
     library_symbol<AdjustWindowRectExForDpi_t>("AdjustWindowRectExForDpi");
-constexpr auto GetWindowDpiAwarenessContext =
+inline constexpr auto GetWindowDpiAwarenessContext =
     library_symbol<GetWindowDpiAwarenessContext_t>(
         "GetWindowDpiAwarenessContext");
-constexpr auto AreDpiAwarenessContextsEqual =
+inline constexpr auto AreDpiAwarenessContextsEqual =
     library_symbol<AreDpiAwarenessContextsEqual_t>(
         "AreDpiAwarenessContextsEqual");
 

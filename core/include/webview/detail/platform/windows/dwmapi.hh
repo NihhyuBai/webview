@@ -55,7 +55,7 @@ typedef enum {
 
 using DwmSetWindowAttribute_t = HRESULT(WINAPI *)(HWND, DWORD, LPCVOID, DWORD);
 
-constexpr auto DwmSetWindowAttribute =
+inline constexpr auto DwmSetWindowAttribute =
     library_symbol<DwmSetWindowAttribute_t>("DwmSetWindowAttribute");
 
 } // namespace dwmapi_symbols

@@ -10,6 +10,7 @@
 #ifndef WEBVIEW_ROOT_H
 #define WEBVIEW_ROOT_H
 
+#define WEBVIEW_MSWEBVIEW2_BUILTIN_IMPL 0
 #include "webview/webview.h"
 
 #endif // WEBVIEW_ROOT_H

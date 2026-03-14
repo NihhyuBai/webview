@@ -47,7 +47,7 @@ namespace shcore_symbols {
 typedef enum { PROCESS_PER_MONITOR_DPI_AWARE = 2 } PROCESS_DPI_AWARENESS;
 using SetProcessDpiAwareness_t = HRESULT(WINAPI *)(PROCESS_DPI_AWARENESS);
 
-constexpr auto SetProcessDpiAwareness =
+inline constexpr auto SetProcessDpiAwareness =
     library_symbol<SetProcessDpiAwareness_t>("SetProcessDpiAwareness");
 
 } // namespace shcore_symbols

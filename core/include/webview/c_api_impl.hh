@@ -40,7 +40,7 @@ namespace webview {
 namespace detail {
 
 // The library's version information.
-constexpr const webview_version_info_t library_version_info{
+inline constexpr const webview_version_info_t library_version_info{
     {WEBVIEW_VERSION_MAJOR, WEBVIEW_VERSION_MINOR, WEBVIEW_VERSION_PATCH},
     WEBVIEW_VERSION_NUMBER,
     WEBVIEW_VERSION_PRE_RELEASE,

@@ -47,7 +47,8 @@ namespace ntdll_symbols {
 using RtlGetVersion_t =
     unsigned int /*NTSTATUS*/ (WINAPI *)(RTL_OSVERSIONINFOW *);
 
-constexpr auto RtlGetVersion = library_symbol<RtlGetVersion_t>("RtlGetVersion");
+inline constexpr auto RtlGetVersion =
+    library_symbol<RtlGetVersion_t>("RtlGetVersion");
 
 } // namespace ntdll_symbols
 } // namespace detail
